@@ -9,31 +9,31 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sia.chatapp.databinding.ItemContainerRecentConversionBinding;
-import com.sia.chatapp.listeners.ConversionListener;
+import com.sia.chatapp.databinding.ItemContainerRecentConversationBinding;
+import com.sia.chatapp.listeners.ConversationListener;
 import com.sia.chatapp.models.ChatMessage;
 import com.sia.chatapp.models.User;
 
 import java.util.List;
 
-public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConversationsAdapter.ConversionViewHolder> {
+public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConversationsAdapter.ConversationViewHolder> {
 
     private final List<ChatMessage> chatMessages;
-    private final ConversionListener conversionListener;
+    private final ConversationListener conversationListener;
 
-    public RecentConversationsAdapter(List<ChatMessage> chatMessages, ConversionListener conversionListener) {
+    public RecentConversationsAdapter(List<ChatMessage> chatMessages, ConversationListener conversationListener) {
         this.chatMessages = chatMessages;
-        this.conversionListener = conversionListener;
+        this.conversationListener = conversationListener;
     }
 
     @NonNull
     @Override
-    public ConversionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ConversionViewHolder(ItemContainerRecentConversionBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+    public ConversationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ConversationViewHolder(ItemContainerRecentConversationBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ConversionViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ConversationViewHolder holder, int position) {
         holder.setData(chatMessages.get(position));
     }
 
@@ -42,11 +42,11 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
         return chatMessages.size();
     }
 
-    class ConversionViewHolder extends RecyclerView.ViewHolder {
+    class ConversationViewHolder extends RecyclerView.ViewHolder {
 
-        ItemContainerRecentConversionBinding binding;
+        ItemContainerRecentConversationBinding binding;
 
-        ConversionViewHolder(ItemContainerRecentConversionBinding itemContainerRecentConversionBinding) {
+        ConversationViewHolder(ItemContainerRecentConversationBinding itemContainerRecentConversionBinding) {
             super(itemContainerRecentConversionBinding.getRoot());
             binding = itemContainerRecentConversionBinding;
         }
@@ -60,7 +60,7 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
                 user.id = chatMessage.conversionId;
                 user.name = chatMessage.conversionName;
                 user.image = chatMessage.conversionImage;
-                conversionListener.onConversionClicked(user);
+                conversationListener.onConversationClicked(user);
             });
         }
     }

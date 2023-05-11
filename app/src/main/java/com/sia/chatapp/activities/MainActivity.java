@@ -17,7 +17,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.sia.chatapp.adapters.RecentConversationsAdapter;
 import com.sia.chatapp.databinding.ActivityMainBinding;
-import com.sia.chatapp.listeners.ConversionListener;
+import com.sia.chatapp.listeners.ConversationListener;
 import com.sia.chatapp.models.ChatMessage;
 import com.sia.chatapp.models.User;
 import com.sia.chatapp.utilities.Constants;
@@ -28,7 +28,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements ConversionListener {
+public class MainActivity extends BaseActivity implements ConversationListener {
 
     private ActivityMainBinding binding;
     private PreferenceManager preferenceManager;
@@ -148,7 +148,7 @@ public class MainActivity extends BaseActivity implements ConversionListener {
     }
 
     @Override
-    public void onConversionClicked(User user) {
+    public void onConversationClicked(User user) {
         Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
         intent.putExtra(Constants.KEY_USER, user);
         startActivity(intent);
